@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<bean id="myorg"
+		class="online.ftc_webdev.spring_demo.domain.Organization"
+		scope="singleton">
+	<constructor-arg value="BMW" index="0"></constructor-arg>
+	<constructor-arg value="1929" index="1"></constructor-arg>
+	<property name="postalCode" value="565656"></property>
+	<property name="employeeCount" value="1"></property>
+	<property name="slogan" value="Work hard, have fun, make history"></property>
+	<property name="businessService" ref="cloudService"></property>
+	</bean>
+	<bean id="cloudService"
+		class="online.ftc_webdev_spring_demo.serviceimpl.CloudServiceImpl">
+	</bean>
+	<bean id="EcommerceService"
+		class="online.ftc_webdev_spring_demo.serviceimpl.EcommerceServiceImpl">
+	</bean>
+	<bean
+		class="online.ftc_webdev_spring_demo.serviceimpl.AgencyRecruitmentServiceImpl"
+		id="agency">
+	</bean>
+	<bean id="referral"
+		class="online.ftc_webdev_spring_demo.serviceimpl.ReferralRecruitmentServiceImpl">
+	</bean>
+	<bean id="humanRessource"
+		class="online.ftc_webdev.spring_demo.domain.HumanResourcesDept">
+	<constructor-arg name="recruitmentService" ref="agency"></constructor-arg>
+	<constructor-arg name="organization" ref="myorg"></constructor-arg>
+	<property name="deptName" value='"Human Resource Dept"'></property>
+	</bean>
+</beans>
